@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PulseLoader from "react-spinners/PulseLoader";
@@ -136,6 +137,11 @@ export default function TicketsList() {
         </>
       )}
       {allTicketsLoaded === "download complete" && (
+        <div className={styles.ticketsLoaded}>
+          <div className={styles.ticketsLoadedText}>Все билеты загружены</div>
+        </div>
+      )}
+      {allTicketsLoaded === true && (
         <div className={styles.ticketsLoaded}>
           <div className={styles.ticketsLoadedText}>Все билеты загружены</div>
         </div>

@@ -1,3 +1,4 @@
+
 export const showMoreTickets = () => ({
   type: "SHOW_MORE_TICKETS",
 });
@@ -45,15 +46,19 @@ export const getTickets = () => async (dispatch) => {
       }
 
       const { tickets, stop } = await ticketsResponse.json();
+      console.log("Response:", { tickets, stop }); // Логирование ответа
       allTickets = [...allTickets, ...tickets];
       dispatch(setTickets(allTickets));
 
       if (!stop) {
+        setTimeout(() => fetchTickets(searchId), 1000); 
+      } else {
         dispatch(finishLoadingAllTickets());
-      } 
-      
+      }
+
     } catch (error) {
       console.error('Произошла ошибка при загрузке билетов:', error);
+      setTimeout(() => fetchTickets(searchId), 1000); 
     }
   };
 
